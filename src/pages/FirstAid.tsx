@@ -12,7 +12,7 @@ interface FirstAidCase {
   id: string;
   emoji: string;
   title: string;
-  icon: React.ElementType;
+  icon: React.ComponentType<{ className?: string }>;
   color: "red" | "yellow" | "green";
   steps: string[];
   tip: string;
