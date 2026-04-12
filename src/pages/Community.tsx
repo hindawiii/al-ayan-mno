@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 interface CommunityCard {
   id: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
   titleAr: string;
   titleEn: string;
   descAr: string;
