@@ -470,7 +470,7 @@ const Pharmacist = () => {
           </Card>
         </TabsContent>
 
-        {/* Tab 4: OCR Prescription Scanner */}
+        {/* Tab 4: Hybrid Prescription Scanner */}
         <TabsContent value="ocr" className="space-y-4 mt-4">
           <Card>
             <CardHeader className="pb-3">
@@ -480,21 +480,16 @@ const Pharmacist = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <p className="text-sm text-muted-foreground">
-                {isAr ? "التقط صورة للروشتة وسيتعرف النظام على أسماء الأدوية تلقائياً" : "Capture a prescription image and the system will recognize drug names automatically"}
-              </p>
-
-              {/* Drop Zone */}
+              {/* Unified Hybrid Zone */}
               <div
                 onDrop={(e) => handleDrop(e, "ocr")}
                 onDragOver={handleDragOver}
                 onDragEnter={() => setOcrDragOver(true)}
                 onDragLeave={() => setOcrDragOver(false)}
-                onClick={() => document.getElementById("ocr-file-input")?.click()}
-                className={`relative aspect-[4/3] rounded-xl border-2 border-dashed flex flex-col items-center justify-center gap-3 cursor-pointer transition-all duration-300 ${
+                className={`relative rounded-2xl border-2 border-dashed p-6 flex flex-col items-center justify-center gap-4 transition-all duration-300 ${
                   ocrDragOver
-                    ? "border-primary bg-primary/15 scale-[1.02]"
-                    : "border-primary/30 bg-muted hover:border-primary/50 hover:bg-primary/5"
+                    ? "border-primary bg-primary/15 scale-[1.02] animate-pulse"
+                    : "border-primary/30 bg-muted/50 hover:border-primary/50 hover:bg-primary/5"
                 }`}
               >
                 <input
@@ -504,33 +499,54 @@ const Pharmacist = () => {
                   className="hidden"
                   onChange={(e) => handleFileInput(e, "ocr")}
                 />
-                <CloudUpload className={`h-12 w-12 transition-colors duration-300 ${ocrDragOver ? "text-primary" : "text-muted-foreground"}`} />
-                <p className="text-sm text-center px-4 font-medium" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                  {isAr ? "اسحب صورة الروشتة هنا أو اضغط للرفع" : "Drag prescription image here or click to upload"}
+
+                {/* Camera icon - triggers camera scan */}
+                <div
+                  onClick={(e) => { e.stopPropagation(); simulateOCR(); }}
+                  className="p-5 rounded-full bg-primary/10 hover:bg-primary/20 cursor-pointer transition-all duration-200 hover:scale-110"
+                >
+                  <Camera className="h-10 w-10 text-primary" />
+                </div>
+
+                <p className="text-sm text-center font-semibold text-foreground" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                  {isAr ? "صور الروشتة الآن أو اسحب ملف الروشتة هنا" : "Capture prescription now or drag the file here"}
                 </p>
+
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <div className="h-px w-8 bg-border" />
+                  <span>{isAr ? "أو" : "or"}</span>
+                  <div className="h-px w-8 bg-border" />
+                </div>
+
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); document.getElementById("ocr-file-input")?.click(); }}
+                  className="text-sm text-primary underline underline-offset-4 hover:text-primary/80 cursor-pointer font-medium"
+                  style={{ fontFamily: "'Cairo', sans-serif" }}
+                >
+                  <CloudUpload className="h-4 w-4 inline me-1" />
+                  {isAr ? "اضغط لرفع ملف" : "Click to upload a file"}
+                </button>
                 <p className="text-xs text-muted-foreground">JPG, PNG, WEBP</p>
               </div>
 
               {/* Wad Al-Halal tip */}
-              <div className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20">
+              <div className="flex items-start gap-3 p-3 rounded-xl bg-primary/5 border border-primary/20">
                 <WadAlHalalAvatar size={36} />
                 <p className="text-xs text-foreground" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                  {isAr ? "💡 يا دكتور، ارمي صورة الروشتة هنا وبنطلع ليك النتيجة في ثواني!" : "💡 Doctor, drop the prescription image here and we'll get you results in seconds!"}
+                  {isAr ? "💡 يا دكتور، الخيار ليك.. صور مباشرة أو اسحب الصورة الجاهزة!" : "💡 Doctor, your choice — capture directly or drag the ready image!"}
                 </p>
               </div>
 
-              <div className="flex gap-2">
-                <Button onClick={simulateOCR} disabled={ocrScanning} className="flex-1 gap-2">
-                  {ocrScanning ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
-                  {ocrScanning ? (isAr ? "جاري التحليل..." : "Analyzing...") : (isAr ? "افحص الروشتة" : "Scan Prescription")}
-                </Button>
-                <Button variant="outline" onClick={() => document.getElementById("ocr-file-input")?.click()} className="gap-2">
-                  <CloudUpload className="h-4 w-4" />
-                  {isAr ? "رفع ملف" : "Upload"}
-                </Button>
-              </div>
-
-              {ocrScanning && <Progress value={65} className="h-2" />}
+              {ocrScanning && (
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-sm text-primary">
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    {isAr ? "جاري تحليل الروشتة..." : "Analyzing prescription..."}
+                  </div>
+                  <Progress value={65} className="h-2" />
+                </div>
+              )}
 
               {ocrResults.length > 0 && (
                 <div className="space-y-3">
@@ -558,7 +574,7 @@ const Pharmacist = () => {
           </Card>
         </TabsContent>
 
-        {/* Tab 5: Barcode Scanner */}
+        {/* Tab 5: Hybrid Barcode Scanner */}
         <TabsContent value="barcode" className="space-y-4 mt-4">
           <Card>
             <CardHeader className="pb-3">
@@ -568,21 +584,16 @@ const Pharmacist = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <p className="text-sm text-muted-foreground">
-                {isAr ? "امسح باركود علبة الدواء لعرض التفاصيل فوراً" : "Scan the drug package barcode to instantly view details"}
-              </p>
-
-              {/* Drop Zone */}
+              {/* Unified Hybrid Zone */}
               <div
                 onDrop={(e) => handleDrop(e, "barcode")}
                 onDragOver={handleDragOver}
                 onDragEnter={() => setBarcodeDragOver(true)}
                 onDragLeave={() => setBarcodeDragOver(false)}
-                onClick={() => document.getElementById("barcode-file-input")?.click()}
-                className={`relative aspect-video rounded-xl border-2 border-dashed flex flex-col items-center justify-center gap-3 cursor-pointer transition-all duration-300 ${
+                className={`relative rounded-2xl border-2 border-dashed p-6 flex flex-col items-center justify-center gap-4 transition-all duration-300 ${
                   barcodeDragOver
-                    ? "border-primary bg-primary/15 scale-[1.02]"
-                    : "border-primary/30 bg-muted hover:border-primary/50 hover:bg-primary/5"
+                    ? "border-primary bg-primary/15 scale-[1.02] animate-pulse"
+                    : "border-primary/30 bg-muted/50 hover:border-primary/50 hover:bg-primary/5"
                 }`}
               >
                 <input
@@ -592,33 +603,54 @@ const Pharmacist = () => {
                   className="hidden"
                   onChange={(e) => handleFileInput(e, "barcode")}
                 />
-                <CloudUpload className={`h-12 w-12 transition-colors duration-300 ${barcodeDragOver ? "text-primary" : "text-muted-foreground"}`} />
-                <p className="text-sm text-center px-4 font-medium" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                  {isAr ? "اسحب صورة الباركود هنا أو اضغط للرفع" : "Drag barcode image here or click to upload"}
+
+                {/* Camera icon - triggers barcode scan */}
+                <div
+                  onClick={(e) => { e.stopPropagation(); simulateBarcode(); }}
+                  className="p-5 rounded-full bg-primary/10 hover:bg-primary/20 cursor-pointer transition-all duration-200 hover:scale-110"
+                >
+                  <ScanBarcode className="h-10 w-10 text-primary" />
+                </div>
+
+                <p className="text-sm text-center font-semibold text-foreground" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                  {isAr ? "امسح الباركود مباشرة بالكاميرا أو اسحب الصورة هنا" : "Scan barcode with camera or drag the image here"}
                 </p>
+
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <div className="h-px w-8 bg-border" />
+                  <span>{isAr ? "أو" : "or"}</span>
+                  <div className="h-px w-8 bg-border" />
+                </div>
+
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); document.getElementById("barcode-file-input")?.click(); }}
+                  className="text-sm text-primary underline underline-offset-4 hover:text-primary/80 cursor-pointer font-medium"
+                  style={{ fontFamily: "'Cairo', sans-serif" }}
+                >
+                  <CloudUpload className="h-4 w-4 inline me-1" />
+                  {isAr ? "اضغط لرفع ملف" : "Click to upload a file"}
+                </button>
                 <p className="text-xs text-muted-foreground">JPG, PNG, WEBP</p>
               </div>
 
               {/* Wad Al-Halal tip */}
-              <div className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20">
+              <div className="flex items-start gap-3 p-3 rounded-xl bg-primary/5 border border-primary/20">
                 <WadAlHalalAvatar size={36} />
                 <p className="text-xs text-foreground" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                  {isAr ? "💡 يا دكتور، ارمي صورة الباركود هنا وبنطلع ليك النتيجة في ثواني!" : "💡 Doctor, drop the barcode image here and we'll get you results in seconds!"}
+                  {isAr ? "💡 يا دكتور، الخيار ليك.. صور مباشرة أو اسحب الصورة الجاهزة!" : "💡 Doctor, your choice — capture directly or drag the ready image!"}
                 </p>
               </div>
 
-              <div className="flex gap-2">
-                <Button onClick={simulateBarcode} disabled={barcodeScanning} className="flex-1 gap-2">
-                  {barcodeScanning ? <Loader2 className="h-4 w-4 animate-spin" /> : <ScanBarcode className="h-4 w-4" />}
-                  {barcodeScanning ? (isAr ? "جاري المسح..." : "Scanning...") : (isAr ? "مسح الباركود" : "Scan Barcode")}
-                </Button>
-                <Button variant="outline" onClick={() => document.getElementById("barcode-file-input")?.click()} className="gap-2">
-                  <CloudUpload className="h-4 w-4" />
-                  {isAr ? "رفع ملف" : "Upload"}
-                </Button>
-              </div>
-
-              {barcodeScanning && <Progress value={50} className="h-2" />}
+              {barcodeScanning && (
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-sm text-primary">
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    {isAr ? "جاري مسح الباركود..." : "Scanning barcode..."}
+                  </div>
+                  <Progress value={50} className="h-2" />
+                </div>
+              )}
 
               {barcodeResult && (
                 <Card className="border-primary/30 bg-primary/5 animate-in fade-in-50">
