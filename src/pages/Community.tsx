@@ -168,6 +168,138 @@ const StoryCard = ({
   </div>
 );
 
+// ─── Quick Post Input ────────────────────────────────────────────────
+const QuickPostInput = ({
+  activeRoom,
+  isAr,
+  onSubmitDiary,
+  onSubmitConsult,
+}: {
+  activeRoom: "diary" | "consultation";
+  isAr: boolean;
+  onSubmitDiary: (text: string) => void;
+  onSubmitConsult: (data: { age: string; gender: string; symptoms: string; duration: string; urgent: boolean }) => void;
+}) => {
+  const [expanded, setExpanded] = useState(false);
+  const [text, setText] = useState("");
+  const [consultData, setConsultData] = useState({ age: "", gender: "ذكر", symptoms: "", duration: "", urgent: false });
+  const fileInputRef = useState<HTMLInputElement | null>(null);
+
+  const placeholder =
+    activeRoom === "diary"
+      ? isAr ? "يا دكتور، حابب تشاركنا شنو الليلة؟" : "What would you like to share tonight?"
+      : isAr ? "أكتب استشارتك هنا..." : "Write your consultation here...";
+
+  const handleSubmit = () => {
+    if (activeRoom === "diary") {
+      if (!text.trim()) return;
+      onSubmitDiary(text);
+      setText("");
+    } else {
+      if (!consultData.symptoms.trim()) return;
+      onSubmitConsult(consultData);
+      setConsultData({ age: "", gender: "ذكر", symptoms: "", duration: "", urgent: false });
+    }
+    setExpanded(false);
+  };
+
+  return (
+    <div className="mb-4">
+      {!expanded ? (
+        <button
+          onClick={() => setExpanded(true)}
+          className="w-full flex items-center gap-3 bg-card border border-border/60 rounded-2xl px-4 py-3.5 shadow-sm hover:shadow-md transition-all duration-200 hover:border-primary/30"
+        >
+          <Avatar className="h-9 w-9 shrink-0">
+            <AvatarFallback className="bg-primary/10 text-primary font-bold text-sm">أ</AvatarFallback>
+          </Avatar>
+          <span className="text-sm text-muted-foreground text-right flex-1">{placeholder}</span>
+          <ImagePlus className="h-5 w-5 text-muted-foreground/50" />
+        </button>
+      ) : (
+        <div className="bg-card border border-primary/20 rounded-2xl shadow-md overflow-hidden animate-fade-in">
+          <div className="p-4 space-y-3">
+            {activeRoom === "diary" ? (
+              <Textarea
+                autoFocus
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder={placeholder}
+                className="min-h-[100px] border-0 bg-transparent resize-none text-sm focus-visible:ring-0 p-0"
+              />
+            ) : (
+              <div className="space-y-3">
+                <Textarea
+                  autoFocus
+                  value={consultData.symptoms}
+                  onChange={(e) => setConsultData((p) => ({ ...p, symptoms: e.target.value }))}
+                  placeholder={placeholder}
+                  className="min-h-[80px] border-0 bg-transparent resize-none text-sm focus-visible:ring-0 p-0"
+                />
+                <div className="flex gap-2 flex-wrap">
+                  <Input
+                    value={consultData.age}
+                    onChange={(e) => setConsultData((p) => ({ ...p, age: e.target.value }))}
+                    placeholder={isAr ? "العمر" : "Age"}
+                    className="h-8 text-xs w-20"
+                    type="number"
+                  />
+                  <select
+                    value={consultData.gender}
+                    onChange={(e) => setConsultData((p) => ({ ...p, gender: e.target.value }))}
+                    className="h-8 text-xs rounded-md border border-input bg-background px-2"
+                  >
+                    <option value="ذكر">{isAr ? "ذكر" : "Male"}</option>
+                    <option value="أنثى">{isAr ? "أنثى" : "Female"}</option>
+                  </select>
+                  <Input
+                    value={consultData.duration}
+                    onChange={(e) => setConsultData((p) => ({ ...p, duration: e.target.value }))}
+                    placeholder={isAr ? "المدة" : "Duration"}
+                    className="h-8 text-xs w-24"
+                  />
+                  <label className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                    <Switch
+                      checked={consultData.urgent}
+                      onCheckedChange={(v) => setConsultData((p) => ({ ...p, urgent: v }))}
+                      className="scale-75"
+                    />
+                    <AlertTriangle className="h-3.5 w-3.5 text-destructive" />
+                    {isAr ? "عاجل" : "Urgent"}
+                  </label>
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="border-t border-border/50 px-4 py-2.5 flex items-center justify-between">
+            <button
+              onClick={() => {
+                const input = document.createElement("input");
+                input.type = "file";
+                input.accept = "image/*";
+                input.click();
+              }}
+              className="flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"
+            >
+              <ImagePlus className="h-5 w-5" />
+              <span className="text-xs">{isAr ? "إرفاق صورة" : "Attach Image"}</span>
+            </button>
+            <div className="flex items-center gap-2">
+              <Button variant="ghost" size="sm" onClick={() => setExpanded(false)} className="h-8 text-xs">
+                <X className="h-3.5 w-3.5" />
+              </Button>
+              <Button size="sm" onClick={handleSubmit} className="h-8 px-4 text-xs gap-1.5">
+                <Send className="h-3.5 w-3.5" />
+                {isAr ? "نشر" : "Post"}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 // ─── Main Component ──────────────────────────────────────────────────
 const Community = () => {
   const { i18n } = useTranslation();
