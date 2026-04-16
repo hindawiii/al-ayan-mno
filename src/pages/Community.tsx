@@ -221,6 +221,7 @@ const QuickPostInput = ({
                 const input = document.createElement("input");
                 input.type = "file";
                 input.accept = "image/*";
+                input.capture = "environment";
                 input.click();
               }}
               className="flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"
