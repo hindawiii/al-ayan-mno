@@ -15,7 +15,7 @@ const About = () => {
       </h1>
 
       <p className="text-muted-foreground text-lg leading-loose px-4">
-        العيان منو: هو دليل طبي رقمي لتعليم الرعاية والإسعافات الأولية والتمريض المنزلي، مصمم بلمسة سودانية لنشر الوعي الصحي.
+        {t("aboutDescription")}
       </p>
 
       <p className="text-sm text-muted-foreground">

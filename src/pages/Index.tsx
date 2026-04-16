@@ -80,7 +80,7 @@ const Index = () => {
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <a
-            href="https://wa.me/?text=جرّب تطبيق العيان منو — دليل طبي رقمي سوداني! https://al-ayan-mno.lovable.app"
+            href="https://wa.me/?text=جرّب تطبيق العيان منو — دليل طبي رقمي سوداني! https://al-ayan-mno-app-2.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 px-4 py-3 rounded-lg bg-[hsl(142,70%,45%)] text-white hover:opacity-90 transition-opacity font-medium"
@@ -89,7 +89,7 @@ const Index = () => {
             <span>{isAr ? "شارك عبر واتساب" : "Share on WhatsApp"}</span>
           </a>
           <a
-            href="https://www.facebook.com/sharer/sharer.php?u=https://al-ayan-mno.lovable.app"
+            href="https://www.facebook.com/sharer/sharer.php?u=https://al-ayan-mno-app-2.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 px-4 py-3 rounded-lg bg-[hsl(220,70%,50%)] text-white hover:opacity-90 transition-opacity font-medium"
@@ -98,7 +98,7 @@ const Index = () => {
             <span>{isAr ? "شارك عبر فيسبوك" : "Share on Facebook"}</span>
           </a>
           <a
-            href="https://twitter.com/intent/tweet?text=جرّب تطبيق العيان منو — دليل طبي رقمي سوداني!&url=https://al-ayan-mno.lovable.app"
+            href="https://twitter.com/intent/tweet?text=جرّب تطبيق العيان منو — دليل طبي رقمي سوداني!&url=https://al-ayan-mno-app-2.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 px-4 py-3 rounded-lg bg-foreground text-background hover:opacity-90 transition-opacity font-medium"

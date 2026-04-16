@@ -499,10 +499,18 @@ const Pharmacist = () => {
                   className="hidden"
                   onChange={(e) => handleFileInput(e, "ocr")}
                 />
+                <input
+                  id="ocr-camera-input"
+                  type="file"
+                  accept="image/*"
+                  capture="environment"
+                  className="hidden"
+                  onChange={(e) => handleFileInput(e, "ocr")}
+                />
 
-                {/* Camera icon - triggers camera scan */}
+                {/* Camera icon - triggers device camera */}
                 <div
-                  onClick={(e) => { e.stopPropagation(); simulateOCR(); }}
+                  onClick={(e) => { e.stopPropagation(); document.getElementById("ocr-camera-input")?.click(); }}
                   className="p-5 rounded-full bg-primary/10 hover:bg-primary/20 cursor-pointer transition-all duration-200 hover:scale-110"
                 >
                   <Camera className="h-10 w-10 text-primary" />
@@ -603,10 +611,18 @@ const Pharmacist = () => {
                   className="hidden"
                   onChange={(e) => handleFileInput(e, "barcode")}
                 />
+                <input
+                  id="barcode-camera-input"
+                  type="file"
+                  accept="image/*"
+                  capture="environment"
+                  className="hidden"
+                  onChange={(e) => handleFileInput(e, "barcode")}
+                />
 
-                {/* Camera icon - triggers barcode scan */}
+                {/* Camera icon - triggers device camera */}
                 <div
-                  onClick={(e) => { e.stopPropagation(); simulateBarcode(); }}
+                  onClick={(e) => { e.stopPropagation(); document.getElementById("barcode-camera-input")?.click(); }}
                   className="p-5 rounded-full bg-primary/10 hover:bg-primary/20 cursor-pointer transition-all duration-200 hover:scale-110"
                 >
                   <ScanBarcode className="h-10 w-10 text-primary" />
