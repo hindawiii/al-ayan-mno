@@ -98,4 +98,31 @@
   body {
     @apply bg-background text-foreground font-cairo;
   }
+
+  /* ── Global RTL polish ─────────────────────────────────────────────
+     When the document is in RTL mode, mirror directional icons
+     (arrows, chevrons, send, external-link, etc.) so they point the
+     correct way for Arabic readers. Opt-out with .rtl-no-flip. */
+  [dir="rtl"] svg.lucide-arrow-left,
+  [dir="rtl"] svg.lucide-arrow-right,
+  [dir="rtl"] svg.lucide-arrow-up-right,
+  [dir="rtl"] svg.lucide-arrow-down-right,
+  [dir="rtl"] svg.lucide-arrow-down-left,
+  [dir="rtl"] svg.lucide-arrow-up-left,
+  [dir="rtl"] svg.lucide-chevron-left,
+  [dir="rtl"] svg.lucide-chevron-right,
+  [dir="rtl"] svg.lucide-chevrons-left,
+  [dir="rtl"] svg.lucide-chevrons-right,
+  [dir="rtl"] svg.lucide-corner-up-left,
+  [dir="rtl"] svg.lucide-corner-up-right,
+  [dir="rtl"] svg.lucide-send,
+  [dir="rtl"] svg.lucide-reply,
+  [dir="rtl"] svg.lucide-undo,
+  [dir="rtl"] svg.lucide-redo,
+  [dir="rtl"] svg.lucide-external-link {
+    transform: scaleX(-1);
+  }
+  [dir="rtl"] .rtl-no-flip svg {
+    transform: none !important;
+  }
 }

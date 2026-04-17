@@ -762,11 +762,11 @@ const Community = () => {
             />
             <div className="flex justify-between items-center">
               <Button variant="ghost" size="sm" className="text-muted-foreground">
-                <ImagePlus className="h-4 w-4 mr-1" />
+                <ImagePlus className="h-4 w-4 me-1" />
                 {isAr ? "صورة" : "Photo"}
               </Button>
               <Button onClick={handleNewDiary} disabled={!newDiaryText.trim()}>
-                <Send className="h-4 w-4 mr-1" />
+                <Send className="h-4 w-4 me-1" />
                 {isAr ? "نشر" : "Post"}
               </Button>
             </div>
@@ -825,7 +825,7 @@ const Community = () => {
               />
             </div>
             <Button onClick={handleNewConsult} className="w-full" disabled={!consultForm.symptoms.trim()}>
-              <Send className="h-4 w-4 mr-1" />
+              <Send className="h-4 w-4 me-1" />
               {isAr ? "إرسال الاستشارة" : "Submit Consultation"}
             </Button>
           </div>

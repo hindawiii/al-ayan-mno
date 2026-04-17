@@ -5,6 +5,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import DirectionProvider from "@/components/DirectionProvider";
 import AppLayout from "@/components/AppLayout";
 import ScrollToTop from "@/components/ScrollToTop";
 import "./i18n";
@@ -34,22 +35,24 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <ScrollToTop />
-          <AppLayout>
-            <Suspense fallback={<Loading />}>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/simulations" element={<Simulations />} />
-                <Route path="/pharmacist" element={<Pharmacist />} />
-                <Route path="/community" element={<Community />} />
-                <Route path="/massage" element={<MassageCare />} />
-                <Route path="/first-aid" element={<FirstAid />} />
-                <Route path="/blood-types" element={<BloodTypes />} />
-                <Route path="/about" element={<About />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </AppLayout>
+          <DirectionProvider>
+            <ScrollToTop />
+            <AppLayout>
+              <Suspense fallback={<Loading />}>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/simulations" element={<Simulations />} />
+                  <Route path="/pharmacist" element={<Pharmacist />} />
+                  <Route path="/community" element={<Community />} />
+                  <Route path="/massage" element={<MassageCare />} />
+                  <Route path="/first-aid" element={<FirstAid />} />
+                  <Route path="/blood-types" element={<BloodTypes />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+            </AppLayout>
+          </DirectionProvider>
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>
