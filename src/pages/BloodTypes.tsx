@@ -427,8 +427,11 @@ const BloodTypes = () => {
                       className="relative overflow-hidden rounded-lg border border-blood/30 bg-card p-3 text-center"
                     >
                       <div
-                        className="absolute inset-0 bg-blood/10"
-                        style={{ width: `${r.pct}%` }}
+                        className="absolute top-0 bottom-0 bg-blood/10"
+                        style={{
+                          width: `${r.pct}%`,
+                          [isAr ? "right" : "left"]: 0,
+                        }}
                       />
                       <div className="relative">
                         <p className="text-xl font-extrabold text-blood">{r.type}</p>
