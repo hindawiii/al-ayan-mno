@@ -351,7 +351,7 @@ const BloodTypes = () => {
                       {isAr ? info.rarityAr : info.rarityEn}
                     </Badge>
                   </CardHeader>
-                  <CardContent className="p-4 space-y-2 text-sm">
+                  <CardContent className="p-4 space-y-2 text-sm text-start">
                     <div>
                       <p className="font-semibold text-foreground">
                         {isAr ? "الخصائص:" : "Characteristics:"}
