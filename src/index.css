@@ -42,6 +42,9 @@
     --sidebar-accent-foreground: 160 20% 10%;
     --sidebar-border: 142 20% 88%;
     --sidebar-ring: 142 60% 30%;
+
+    --blood: 0 75% 48%;
+    --blood-foreground: 0 0% 100%;
   }
 
   .dark {
@@ -81,6 +84,9 @@
     --sidebar-accent-foreground: 40 20% 90%;
     --sidebar-border: 160 15% 15%;
     --sidebar-ring: 142 55% 40%;
+
+    --blood: 0 70% 55%;
+    --blood-foreground: 0 0% 100%;
   }
 }
 
