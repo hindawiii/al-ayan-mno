@@ -1,4 +1,4 @@
-import { Activity, Pill, Users, Heart, Home, Cross, Info, Moon, Sun, Globe } from "lucide-react";
+import { Activity, Pill, Users, Heart, Home, Cross, Info, Moon, Sun, Globe, Droplet } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -43,6 +43,7 @@ export function AppSidebar() {
     { title: t("community"), url: "/community", icon: Users },
     { title: t("massage"), url: "/massage", icon: Heart },
     { title: t("firstAid"), url: "/first-aid", icon: Cross },
+    { title: t("bloodTypes"), url: "/blood-types", icon: Droplet },
     { title: t("about"), url: "/about", icon: Info },
   ];
 

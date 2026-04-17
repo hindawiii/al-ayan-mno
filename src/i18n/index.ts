@@ -173,6 +173,9 @@ const resources = {
       shareViaFacebook: "شارك عبر فيسبوك",
       shareViaX: "شارك عبر X",
       share: "مشاركة",
+      // Blood Types
+      bloodTypes: "فصائل الدم",
+      bloodTypesDesc: "موسوعة فصائل الدم، الوراثة، التبرع والفحص المخبري",
     },
   },
   en: {
@@ -344,6 +347,9 @@ const resources = {
       shareViaFacebook: "Share on Facebook",
       shareViaX: "Share on X",
       share: "Share",
+      // Blood Types
+      bloodTypes: "Blood Types",
+      bloodTypesDesc: "Encyclopedia, genetics, donor compatibility & lab testing",
     },
   },
 };
