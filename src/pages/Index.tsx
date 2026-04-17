@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Activity, Pill, Users, Heart, Cross, MessageCircle, Facebook, Twitter } from "lucide-react";
+import { Activity, Pill, Users, Heart, Cross, MessageCircle, Facebook, Twitter, Droplet } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import WadAlHalalAvatar from "@/components/WadAlHalalAvatar";
 
@@ -14,6 +14,7 @@ const Index = () => {
     { title: t("community"), description: t("communityDesc"), icon: Users, url: "/community", color: "text-primary" },
     { title: t("massage"), description: t("massageDesc"), icon: Heart, url: "/massage", color: "text-destructive" },
     { title: t("firstAid"), description: t("firstAidDesc"), icon: Cross, url: "/first-aid", color: "text-destructive" },
+    { title: t("bloodTypes"), description: t("bloodTypesDesc"), icon: Droplet, url: "/blood-types", color: "text-blood" },
   ];
 
   return (
