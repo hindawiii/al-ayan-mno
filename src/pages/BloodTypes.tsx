@@ -279,9 +279,9 @@ const BloodTypes = () => {
 
   // ─── Render ────────────────────────────────────────────────────────
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" dir={isAr ? "rtl" : "ltr"}>
       {/* Hero */}
-      <Card className="overflow-hidden border-blood/30 bg-gradient-to-l from-blood/10 via-blood/5 to-transparent">
+      <Card className={`overflow-hidden border-blood/30 bg-gradient-to-${isAr ? "l" : "r"} from-blood/10 via-blood/5 to-transparent`}>
         <CardContent className="flex flex-col sm:flex-row items-center gap-5 p-6">
           <div className="relative">
             <div className="absolute inset-0 rounded-full bg-blood/30 blur-2xl animate-pulse" />
