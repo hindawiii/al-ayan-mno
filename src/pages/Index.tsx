@@ -19,16 +19,16 @@ const Index = () => {
 
   return (
     <div className="space-y-8">
-      <Card className="overflow-hidden border-primary/20 bg-gradient-to-l from-primary/5 to-transparent">
+      <Card className={`overflow-hidden border-primary/20 bg-gradient-to-${isAr ? "l" : "r"} from-primary/5 to-transparent`}>
         <CardContent className="flex flex-col sm:flex-row items-center gap-6 p-6">
           <div className="animate-float">
             <WadAlHalalAvatar size={140} />
           </div>
-          <div className="flex-1 text-center sm:text-right space-y-3">
+          <div className="flex-1 text-center sm:text-start space-y-3">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground">
               {t("welcome")} <span className="text-primary">{t("appName")}</span>
             </h2>
-            <div className="bg-card rounded-xl p-4 border shadow-sm max-w-md mx-auto sm:mx-0 sm:mr-0">
+            <div className="bg-card rounded-xl p-4 border shadow-sm max-w-md mx-auto sm:mx-0 sm:ms-0">
               <p className="text-muted-foreground leading-relaxed">
                 💡 <strong>{t("tipOfDay")}</strong> {t("tipText")}
               </p>
