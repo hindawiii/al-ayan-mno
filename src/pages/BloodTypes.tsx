@@ -279,9 +279,9 @@ const BloodTypes = () => {
 
   // ─── Render ────────────────────────────────────────────────────────
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" dir={isAr ? "rtl" : "ltr"}>
       {/* Hero */}
-      <Card className="overflow-hidden border-blood/30 bg-gradient-to-l from-blood/10 via-blood/5 to-transparent">
+      <Card className={`overflow-hidden border-blood/30 bg-gradient-to-${isAr ? "l" : "r"} from-blood/10 via-blood/5 to-transparent`}>
         <CardContent className="flex flex-col sm:flex-row items-center gap-5 p-6">
           <div className="relative">
             <div className="absolute inset-0 rounded-full bg-blood/30 blur-2xl animate-pulse" />
@@ -351,7 +351,7 @@ const BloodTypes = () => {
                       {isAr ? info.rarityAr : info.rarityEn}
                     </Badge>
                   </CardHeader>
-                  <CardContent className="p-4 space-y-2 text-sm">
+                  <CardContent className="p-4 space-y-2 text-sm text-start">
                     <div>
                       <p className="font-semibold text-foreground">
                         {isAr ? "الخصائص:" : "Characteristics:"}
@@ -427,8 +427,11 @@ const BloodTypes = () => {
                       className="relative overflow-hidden rounded-lg border border-blood/30 bg-card p-3 text-center"
                     >
                       <div
-                        className="absolute inset-0 bg-blood/10"
-                        style={{ width: `${r.pct}%` }}
+                        className="absolute top-0 bottom-0 bg-blood/10"
+                        style={{
+                          width: `${r.pct}%`,
+                          [isAr ? "right" : "left"]: 0,
+                        }}
                       />
                       <div className="relative">
                         <p className="text-xl font-extrabold text-blood">{r.type}</p>
