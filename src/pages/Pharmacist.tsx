@@ -158,13 +158,13 @@ const Pharmacist = () => {
     : "💡 Pharmacist Tip — Wad Al-Halal:\n\nAlways check patient allergies before administering any antibiotic.\nVerify dosage against patient weight, especially for children.\nStore medications away from heat and humidity in Sudan's hot climate.";
 
   return (
-    <div className="flex flex-col gap-4 pb-6">
+    <div className="flex flex-col gap-4 pb-6 text-start" dir={isAr ? "rtl" : "ltr"}>
       {/* Header */}
-      <div className="flex items-center gap-3">
+      <div className={`flex items-center gap-3 ${isAr ? "flex-row-reverse" : ""}`}>
         <div className="p-3 rounded-full bg-primary/10">
           <Pill className="h-8 w-8 text-primary" />
         </div>
-        <div>
+        <div className="text-start">
           <h1 className="text-xl font-bold text-foreground">{isAr ? "الصيدلي الذكي" : "Smart Pharmacist"}</h1>
           <p className="text-sm text-muted-foreground">
             {isAr ? "مساعدك الدوائي الذكي" : "Your AI Medication Assistant"}
@@ -247,13 +247,13 @@ const Pharmacist = () => {
             return (
               <Card className="border-primary/30 bg-primary/5 animate-in fade-in-50">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-base flex items-center gap-2">
+                  <CardTitle className={`text-base flex items-center gap-2 ${isAr ? "flex-row-reverse justify-end text-right" : ""}`}>
                     <Pill className="h-5 w-5 text-primary" />
                     {drug.generic} — {isAr ? "بطاقة معلومات سريعة" : "Quick Info Card"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-3 text-start">
                     <div>
                       <p className="text-xs text-muted-foreground">{isAr ? "الاسم العلمي (Generic)" : "Generic Name"}</p>
                       <p className="font-semibold text-sm">{drug.generic}</p>

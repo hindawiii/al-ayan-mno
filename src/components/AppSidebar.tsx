@@ -55,7 +55,7 @@ export function AppSidebar() {
       <SidebarHeader className="flex items-center justify-center py-4">
         <WadAlHalalAvatar size={collapsed ? 32 : 56} />
         {!collapsed && (
-          <h2 className="text-lg font-bold text-primary mt-2">{t("appName")}</h2>
+          <h2 className="mt-2 text-lg font-bold text-primary text-center">{t("appName")}</h2>
         )}
         {/* Theme & Language toggles */}
         <div className={`flex items-center gap-1 mt-2 ${collapsed ? "flex-col" : ""}`}>
@@ -81,7 +81,7 @@ export function AppSidebar() {
                     <NavLink
                       to={item.url}
                       end={item.url === "/"}
-                      className="hover:bg-sidebar-accent/50"
+                      className="hover:bg-sidebar-accent/50 justify-start text-start"
                       activeClassName="bg-sidebar-accent text-sidebar-primary font-semibold"
                     >
                       <item.icon className="h-5 w-5 shrink-0" />

@@ -279,10 +279,10 @@ const BloodTypes = () => {
 
   // ─── Render ────────────────────────────────────────────────────────
   return (
-    <div className="space-y-6" dir={isAr ? "rtl" : "ltr"}>
+    <div className="space-y-6 text-start" dir={isAr ? "rtl" : "ltr"}>
       {/* Hero */}
       <Card className={`overflow-hidden border-blood/30 bg-gradient-to-${isAr ? "l" : "r"} from-blood/10 via-blood/5 to-transparent`}>
-        <CardContent className="flex flex-col sm:flex-row items-center gap-5 p-6">
+        <CardContent className={`flex flex-col items-center gap-5 p-6 sm:flex-row ${isAr ? "sm:flex-row-reverse" : ""}`}>
           <div className="relative">
             <div className="absolute inset-0 rounded-full bg-blood/30 blur-2xl animate-pulse" />
             <Droplet className="relative h-16 w-16 text-blood drop-shadow-lg" fill="currentColor" />
@@ -343,11 +343,11 @@ const BloodTypes = () => {
                   className="border-blood/20 hover:border-blood/60 hover:shadow-lg hover:shadow-blood/10 transition-all group overflow-hidden"
                 >
                   <CardHeader className="bg-gradient-to-br from-blood to-blood/70 text-blood-foreground p-4">
-                    <div className="flex items-center justify-between">
+                    <div className={`flex items-center justify-between ${isAr ? "flex-row-reverse" : ""}`}>
                       <span className="text-3xl font-extrabold tracking-tight">{type}</span>
                       <Droplet className="h-8 w-8 opacity-90 group-hover:scale-110 transition-transform" fill="currentColor" />
                     </div>
-                    <Badge variant="secondary" className="bg-blood-foreground/90 text-blood text-[10px] mt-1 w-fit">
+                    <Badge variant="secondary" className="mt-1 w-fit bg-blood-foreground/90 text-[10px] text-blood self-start">
                       {isAr ? info.rarityAr : info.rarityEn}
                     </Badge>
                   </CardHeader>
@@ -433,7 +433,7 @@ const BloodTypes = () => {
                           [isAr ? "right" : "left"]: 0,
                         }}
                       />
-                      <div className="relative">
+                      <div className="relative text-center">
                         <p className="text-xl font-extrabold text-blood">{r.type}</p>
                         <p className="text-xs text-muted-foreground mt-1">{r.pct}%</p>
                       </div>
@@ -612,11 +612,11 @@ const BloodTypes = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="rounded-lg border-2 border-blood/30 p-4 bg-gradient-to-br from-blood/10 to-transparent">
-                  <p className="font-bold text-blood mb-3 flex items-center gap-2">
+                  <p className={`mb-3 flex items-center gap-2 font-bold text-blood ${isAr ? "flex-row-reverse justify-end text-right" : ""}`}>
                     <ArrowRight className="h-4 w-4" />
                     {isAr ? "أتبرع لـ:" : "I can give to:"}
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className={`flex flex-wrap gap-2 ${isAr ? "justify-end" : ""}`}>
                     {CAN_GIVE_TO[donorSelect].map((b) => (
                       <span
                         key={b}
@@ -628,11 +628,11 @@ const BloodTypes = () => {
                   </div>
                 </div>
                 <div className="rounded-lg border-2 border-primary/30 p-4 bg-gradient-to-br from-primary/10 to-transparent">
-                  <p className="font-bold text-primary mb-3 flex items-center gap-2">
+                  <p className={`mb-3 flex items-center gap-2 font-bold text-primary ${isAr ? "flex-row-reverse justify-end text-right" : ""}`}>
                     <CheckCircle2 className="h-4 w-4" />
                     {isAr ? "أستقبل من:" : "I can receive from:"}
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className={`flex flex-wrap gap-2 ${isAr ? "justify-end" : ""}`}>
                     {CAN_RECEIVE_FROM[donorSelect].map((b) => (
                       <span
                         key={b}
@@ -711,7 +711,7 @@ const BloodTypes = () => {
                 />
               </div>
               <div className="flex items-center justify-between rounded-lg border p-3 bg-card">
-                <div className="flex items-center gap-2">
+                <div className={`flex items-center gap-2 ${isAr ? "flex-row-reverse" : ""}`}>
                   <AlertCircle className="h-4 w-4 text-blood" />
                   <span className="text-sm font-medium">
                     {isAr ? "وضع علامة عاجل" : "Mark as urgent"}
