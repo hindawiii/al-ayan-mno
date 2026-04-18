@@ -343,13 +343,21 @@ const BloodTypes = () => {
                   className="border-blood/20 hover:border-blood/60 hover:shadow-lg hover:shadow-blood/10 transition-all group overflow-hidden"
                 >
                   <CardHeader className="bg-gradient-to-br from-blood to-blood/70 text-blood-foreground p-4">
-                    <div className={`flex items-center justify-between ${isAr ? "flex-row-reverse" : ""}`}>
+                    <div className="flex items-center justify-between gap-2">
                       <span className="text-3xl font-extrabold tracking-tight">{type}</span>
-                      <Droplet className="h-8 w-8 opacity-90 group-hover:scale-110 transition-transform" fill="currentColor" />
+                      <Droplet
+                        className="h-8 w-8 opacity-90 group-hover:scale-110 transition-transform"
+                        fill="currentColor"
+                      />
                     </div>
-                    <Badge variant="secondary" className="mt-1 w-fit bg-blood-foreground/90 text-[10px] text-blood self-start">
-                      {isAr ? info.rarityAr : info.rarityEn}
-                    </Badge>
+                    <div className={`mt-1 flex w-full ${isAr ? "justify-end" : "justify-start"}`}>
+                      <Badge
+                        variant="secondary"
+                        className="bg-blood-foreground/90 text-[10px] text-blood"
+                      >
+                        {isAr ? info.rarityAr : info.rarityEn}
+                      </Badge>
+                    </div>
                   </CardHeader>
                   <CardContent className="p-4 space-y-2 text-sm text-start">
                     <div>
