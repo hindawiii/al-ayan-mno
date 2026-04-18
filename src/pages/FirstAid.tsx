@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Heart, Wind, Droplets, Bone, Flame, Crosshair,
   Brain, Footprints, ChevronLeft, ChevronRight, Phone, X
@@ -214,6 +215,8 @@ const colorMap = {
 };
 
 const FirstAid = () => {
+  const { i18n } = useTranslation();
+  const isAr = i18n.language === "ar";
   const [activeCase, setActiveCase] = useState<FirstAidCase | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -233,9 +236,9 @@ const FirstAid = () => {
   };
 
   return (
-    <div className="space-y-6 pb-8">
+    <div className="space-y-6 pb-8 text-start" dir={isAr ? "rtl" : "ltr"}>
       {/* Header */}
-      <div className="text-center space-y-2">
+      <div className="space-y-2 text-center">
         <h1 className="text-2xl md:text-3xl font-bold text-foreground">
           🏥 دليل الإسعافات الأولية التفاعلي
         </h1>
@@ -279,7 +282,7 @@ const FirstAid = () => {
             return (
               <>
                 {/* Header */}
-                <div className={`${colors.headerBg} p-5 flex items-center gap-3 relative`}>
+                <div className={`${colors.headerBg} relative flex items-center gap-3 p-5 ${isAr ? "flex-row-reverse text-right" : ""}`}>
                   <div className={`p-2 rounded-xl ${colors.bg}`}>
                     <activeCase.icon className={`h-8 w-8 ${colors.icon}`} />
                   </div>
@@ -311,8 +314,8 @@ const FirstAid = () => {
                 </div>
 
                 {/* Current step */}
-                <div className="px-5 pb-2 min-h-[100px] flex items-center">
-                  <div className="flex items-start gap-4 w-full">
+                 <div className="px-5 pb-2 min-h-[100px] flex items-center">
+                   <div className={`flex w-full items-start gap-4 ${isAr ? "flex-row-reverse text-right" : ""}`}>
                     <span className={`flex-shrink-0 w-10 h-10 rounded-full ${colors.badge} font-bold text-lg flex items-center justify-center`}>
                       {currentStep + 1}
                     </span>
@@ -328,8 +331,8 @@ const FirstAid = () => {
                 </div>
 
                 {/* Wad Al-Halal tip */}
-                <div className="px-5 py-4">
-                  <div className="flex items-start gap-3 bg-primary/5 border border-primary/20 rounded-xl p-3">
+                 <div className="px-5 py-4">
+                   <div className={`flex items-start gap-3 rounded-xl border border-primary/20 bg-primary/5 p-3 ${isAr ? "flex-row-reverse text-right" : ""}`}>
                     <WadAlHalalAvatar size={48} className="flex-shrink-0" />
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-bold text-primary mb-1">نصيحة ود الحلال:</p>
@@ -341,7 +344,7 @@ const FirstAid = () => {
                 </div>
 
                 {/* Footer */}
-                <div className="px-5 pb-5 flex items-center gap-2">
+                 <div className={`px-5 pb-5 flex items-center gap-2 ${isAr ? "flex-row-reverse" : ""}`}>
                   <Button
                     variant="outline"
                     size="icon"
