@@ -157,7 +157,7 @@ const QuickPostInput = ({
           <Avatar className="h-9 w-9 shrink-0">
             <AvatarFallback className="bg-primary/10 text-primary font-bold text-sm">أ</AvatarFallback>
           </Avatar>
-          <span className="text-sm text-muted-foreground text-right flex-1">{placeholder}</span>
+          <span className="flex-1 text-sm text-muted-foreground text-start">{placeholder}</span>
           <ImagePlus className="h-5 w-5 text-muted-foreground/50" />
         </button>
       ) : (
@@ -740,7 +740,7 @@ const Community = () => {
       {/* ═══════════════ FAB ═══════════════ */}
       <button
         onClick={() => (activeRoom === "diary" ? setShowNewDiary(true) : setShowNewConsult(true))}
-        className="fixed bottom-6 right-6 z-30 h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-200 flex items-center justify-center"
+        className="fixed bottom-6 end-6 z-30 h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-200 flex items-center justify-center"
       >
         <Plus className="h-7 w-7" />
       </button>
