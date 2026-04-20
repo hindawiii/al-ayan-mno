@@ -730,6 +730,17 @@ export default function InfectionControl() {
             </div>
           </AccordionTrigger>
           <AccordionContent className="space-y-4 pt-2">
+            <div className="rounded-lg border-2 border-destructive bg-destructive/10 p-4 space-y-1">
+              <div className="flex items-center gap-2 text-destructive font-bold">
+                <AlertTriangle className="h-5 w-5 animate-pulse" />
+                تنبيه عاجل: نافذة العلاج الوقائي (PEP)
+              </div>
+              <p className="text-sm text-foreground">
+                ⏱️ يجب بدء <strong>الوقاية بعد التعرض (PEP)</strong> لفيروس HIV
+                <strong> خلال أول ساعتين</strong> من الحادثة لأقصى فعالية،
+                و<strong>يُمنع تأخيرها بعد 72 ساعة</strong> — بعد هذه المدة لا تعود فعّالة.
+              </p>
+            </div>
             <div className="rounded-lg bg-background p-4">
               <h4 className="font-bold text-destructive mb-2">
                 🚨 الإسعاف الفوري
