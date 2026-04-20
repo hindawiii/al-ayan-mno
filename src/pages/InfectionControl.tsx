@@ -74,6 +74,22 @@ function ChlorineCalculator() {
         <Calculator className="h-4 w-4" />
         حاسبة محلول الكلور
       </div>
+      <div className="flex flex-wrap gap-2">
+        <span className="text-xs text-muted-foreground self-center">تركيز العبوة الشائع في السودان:</span>
+        <Button type="button" size="sm" variant={stock === 5 ? "default" : "outline"} onClick={() => setStock(5)}>
+          5%
+        </Button>
+        <Button type="button" size="sm" variant={stock === 6 ? "default" : "outline"} onClick={() => setStock(6)}>
+          6%
+        </Button>
+        <span className="text-xs text-muted-foreground self-center mx-1">| الهدف:</span>
+        <Button type="button" size="sm" variant={target === 0.5 ? "default" : "outline"} onClick={() => setTarget(0.5)}>
+          0.5% (أسطح/دم)
+        </Button>
+        <Button type="button" size="sm" variant={target === 0.05 ? "default" : "outline"} onClick={() => setTarget(0.05)}>
+          0.05% (أدوات)
+        </Button>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <div className="space-y-1">
           <label className="text-xs text-muted-foreground">تركيز الكلور المركّز %</label>
@@ -714,6 +730,17 @@ export default function InfectionControl() {
             </div>
           </AccordionTrigger>
           <AccordionContent className="space-y-4 pt-2">
+            <div className="rounded-lg border-2 border-destructive bg-destructive/10 p-4 space-y-1">
+              <div className="flex items-center gap-2 text-destructive font-bold">
+                <AlertTriangle className="h-5 w-5 animate-pulse" />
+                تنبيه عاجل: نافذة العلاج الوقائي (PEP)
+              </div>
+              <p className="text-sm text-foreground">
+                ⏱️ يجب بدء <strong>الوقاية بعد التعرض (PEP)</strong> لفيروس HIV
+                <strong> خلال أول ساعتين</strong> من الحادثة لأقصى فعالية،
+                و<strong>يُمنع تأخيرها بعد 72 ساعة</strong> — بعد هذه المدة لا تعود فعّالة.
+              </p>
+            </div>
             <div className="rounded-lg bg-background p-4">
               <h4 className="font-bold text-destructive mb-2">
                 🚨 الإسعاف الفوري
