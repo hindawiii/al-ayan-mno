@@ -1,4 +1,4 @@
-import { Activity, Pill, Users, Heart, Home, Cross, Info, Moon, Sun, Globe, Droplet } from "lucide-react";
+import { Activity, Pill, Users, Heart, Home, Cross, Info, Moon, Sun, Droplet } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -24,17 +24,8 @@ export function AppSidebar() {
   const collapsed = state === "collapsed";
   const location = useLocation();
   const currentPath = location.pathname;
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { theme, toggleTheme } = useTheme();
-
-  const isAr = i18n.language === "ar";
-
-  const toggleLang = () => {
-    const newLang = isAr ? "en" : "ar";
-    i18n.changeLanguage(newLang);
-    document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
-    document.documentElement.lang = newLang;
-  };
 
   const items = [
     { title: t("home"), url: "/", icon: Home },
@@ -51,19 +42,16 @@ export function AppSidebar() {
     path === "/" ? currentPath === "/" : currentPath.startsWith(path);
 
   return (
-    <Sidebar collapsible="icon" side={isAr ? "right" : "left"}>
+    <Sidebar collapsible="icon" side="right">
       <SidebarHeader className="flex items-center justify-center py-4">
         <WadAlHalalAvatar size={collapsed ? 32 : 56} />
         {!collapsed && (
           <h2 className="mt-2 text-lg font-bold text-primary text-center">{t("appName")}</h2>
         )}
-        {/* Theme & Language toggles */}
+        {/* Theme toggle */}
         <div className={`flex items-center gap-1 mt-2 ${collapsed ? "flex-col" : ""}`}>
-          <Button variant="ghost" size="icon" onClick={toggleTheme} className="h-8 w-8">
+          <Button variant="ghost" size="icon" onClick={toggleTheme} className="h-8 w-8" aria-label="تبديل الوضع">
             {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </Button>
-          <Button variant="ghost" size="icon" onClick={toggleLang} className="h-8 w-8">
-            <Globe className="h-4 w-4" />
           </Button>
         </div>
       </SidebarHeader>
@@ -97,7 +85,7 @@ export function AppSidebar() {
       <SidebarFooter className="py-2">
         {!collapsed && (
           <p className="text-xs text-center text-muted-foreground">
-            {isAr ? "AR" : "EN"} • {theme === "dark" ? "🌙" : "☀️"}
+            AR • {theme === "dark" ? "🌙" : "☀️"}
           </p>
         )}
       </SidebarFooter>
