@@ -17,6 +17,7 @@ const MassageCare = lazy(() => import("./pages/MassageCare"));
 const FirstAid = lazy(() => import("./pages/FirstAid"));
 const About = lazy(() => import("./pages/About"));
 const BloodTypes = lazy(() => import("./pages/BloodTypes"));
+const InfectionControl = lazy(() => import("./pages/InfectionControl"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -45,6 +46,7 @@ const App = () => (
                 <Route path="/massage" element={<MassageCare />} />
                 <Route path="/first-aid" element={<FirstAid />} />
                 <Route path="/blood-types" element={<BloodTypes />} />
+                <Route path="/infection-control" element={<InfectionControl />} />
                 <Route path="/about" element={<About />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
